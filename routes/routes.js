@@ -16,9 +16,6 @@ const livrosController =  require('../controllers/livroController');
 const opcLivrosController =  require('../controllers/opcLivrosController');
 
 
-
-
-
 // definição de rotas
 router.get('/autores', AutoresController.listarAutores);
 //cadastar
