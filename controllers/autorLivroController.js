@@ -1,7 +1,7 @@
 const {json} = require("express");
 const db = require(".../database/connection");
 
-module.exports ={
+module.exports = {
     async listarAutorLivro(request, response){
         try{
             return response.status(200).json({confirma: 'autorLivro'});
