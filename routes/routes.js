@@ -53,6 +53,7 @@ router.get('/genero', generoController.listarGenero);
 //excluir
 
 router.get('/livavaliados', livAvaliadosController.listarLivAvaliados);
+router.post('/livavaliados', livAvaliadosController.create);
 //cadastar
 //editar
 //excluir
@@ -63,6 +64,7 @@ router.get('/livgostei', livGosteiController.listarLivGostei);
 //excluir
 
 router.get('/livros', livrosController.listarLivro);
+router.post('/livros', livrosController.create);
 //cadastar
 //editar
 //excluir
