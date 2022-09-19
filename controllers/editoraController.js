@@ -14,4 +14,17 @@ module.exports ={
             return response.status(500).json({confirma: 'Erro', message: error});
                 }
     },
+    async create (request, response){
+        try{
+
+            const {edit_nome} = request.body; 
+            const sql = 'INSERT into editora (edit_nome) VALUES (?,?,?)';
+            const values = [edit_nome];
+            const confirmacao = await db.query(sql, values);
+            const editora = confirmacao[0].insertId;
+            return response.status(200).json({confirma: 'Sucesso', message: editora});
+        } catch (error) {
+            return response.status(500).json({confirma: 'Erro', message: error});
+        }
+    },
 };
