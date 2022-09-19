@@ -23,7 +23,7 @@ router.get('/autores', AutoresController.listarAutores);
 //excluir
 
 router.get('/usuario', usuarioController.listarUsuarios);
-//cadastar
+router.post('/usuario', usuarioController.create);
 //editar
 //excluir
 
@@ -58,7 +58,7 @@ router.get('/livavaliados', livAvaliadosController.listarLivAvaliados);
 //excluir
 
 router.get('/livgostei', livGosteiController.listarLivGostei);
-//cadastar
+router.post('/livgostei', livGosteiController.create);
 //editar
 //excluir
 
@@ -68,7 +68,7 @@ router.get('/livros', livrosController.listarLivro);
 //excluir
 
 router.get('/opclivro', opcLivrosController.listarOpcLivro); 
-//cadastar
+router.post('/opclivro', opcLivrosController.create); 
 //editar
 //excluir
 
