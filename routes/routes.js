@@ -54,7 +54,7 @@ router.get('/genero', generoController.listarGenero);
 
 router.get('/livavaliados', livAvaliadosController.listarLivAvaliados);
 router.post('/livavaliados', livAvaliadosController.create);
-//cadastar
+router.patch('/livavaliados/:usu_id', livAvaliadosController.update);
 //editar
 //excluir
 
