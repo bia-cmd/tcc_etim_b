@@ -31,4 +31,22 @@ module.exports ={
             return response.status(500).json({confirma: 'Erro', message: error});
         }
     },
+
+    async update(request, respoonse) {
+        try{
+            const{ usu_id, liv_id, opc_lendo, opc_abandonado, opc_li, opc_quero_ler, opc_relendo } = request.body;
+
+            const { opc_id } = request.params;
+
+            const sql = 'UPDATE opc_livros SET usu_id = ?, liv_id = ?, opc_lendo = ?, opc_abandonado = ?, opc_li = ?, opc_quero_ler = ?, opc_relendo = ?, WHERE opc_id = ?;';
+
+            const values = [usu_id, liv_id, opc_lendo, opc_abandonado, opc_li, opc_quero_ler, opc_relendo, opc_id];   
+ 
+            const atualizacao = await db.query(sql, values);
+
+            return response.status(200).json({confirma: 'Sucesso', message: 'Dados atualizados'});            
+            } catch (error) { 
+            return response.status(500).json({confirma: 'Erro', message: error});
+        } 
+    },
 };
