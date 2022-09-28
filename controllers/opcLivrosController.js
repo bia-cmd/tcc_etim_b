@@ -32,7 +32,7 @@ module.exports ={
         }
     },
 
-    async update(request, respoonse) {
+    async update(request, response) {
         try{
             const{ usu_id, liv_id, opc_lendo, opc_abandonado, opc_li, opc_quero_ler, opc_relendo } = request.body;
 

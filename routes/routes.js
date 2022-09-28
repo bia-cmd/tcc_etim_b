@@ -24,7 +24,7 @@ router.get('/autores', AutoresController.listarAutores);
 
 router.get('/usuario', usuarioController.listarUsuarios);
 router.post('/usuario', usuarioController.create);
-//editar
+router.patch('/usuario/:usu_id', usuarioController.update);
 //excluir
 
 router.get('/autorLivro', autorLivroController.listarAutorLivro);
@@ -69,7 +69,7 @@ router.get('/livros', livrosController.listarLivro);
 
 router.get('/opclivro', opcLivrosController.listarOpcLivro); 
 router.post('/opclivro', opcLivrosController.create); 
-//editar
+router.patch('/opclivro/:opc_id', opcLivrosController.update); 
 //excluir
 
 

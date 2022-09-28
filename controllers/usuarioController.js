@@ -32,7 +32,7 @@ module.exports = {
         }
     },
 
-    async update(request, respoonse) {
+    async update(request, response) {
         try{
             const{ usu_nome, cur_id, usu_rm, usu_email, usu_senha, usu_foto, usu_telefone } = request.body;
 
