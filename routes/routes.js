@@ -55,7 +55,6 @@ router.get('/genero', generoController.listarGenero);
 router.get('/livavaliados', livAvaliadosController.listarLivAvaliados);
 router.post('/livavaliados', livAvaliadosController.create);
 router.patch('/livavaliados/:usu_id', livAvaliadosController.update);
-//editar
 //excluir
 
 router.get('/livgostei', livGosteiController.listarLivGostei);
@@ -65,9 +64,8 @@ router.get('/livgostei', livGosteiController.listarLivGostei);
 
 router.get('/livros', livrosController.listarLivro);
 router.post('/livros', livrosController.create);
-//cadastar
-//editar
-//excluir
+router.patch('/livros/:liv_id', livrosController.update);
+router.delete('/livros/:liv_id', livrosController.delete);
 
 router.get('/opclivro', opcLivrosController.listarOpcLivro); 
 //cadastar

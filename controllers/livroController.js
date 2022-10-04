@@ -39,9 +39,9 @@ async update(request, response) {
             // parâmetro passado via url na chamada da api pelo front-end
         const { liv_id } = request.params; 
             // instrução sql para atualização
-        const sql = 'UPDATE livro SET liv_nome = ?, edit_id = ?, gen_id = ?, liv_quant_paginas = ?, liv_descricao = ?, liv_foto = ?, liv_moderacao = ? WHERE liv_id;';  
+        const sql = 'UPDATE livro SET liv_nome = ?, edit_id = ?, gen_id = ?, liv_quant_paginas = ?, liv_descricao = ?, liv_foto = ?, liv_moderacao = ?, usu_id= ? WHERE liv_id;';  
             // definição de array com os parâmetros que receberam os valores do front-end
-        const values = [liv_nome, edit_id, gen_id, liv_quant_paginas, liv_descricao, liv_foto, liv_moderacao];   
+        const values = [liv_nome, edit_id, gen_id, liv_quant_paginas, liv_descricao, liv_foto, liv_moderacao, usu_id, liv_id];   
             // executa a instrução de atualização no banco de dados    
         const atualizacao = await db.query(sql, values);
             // Mensagem de retorno no formato JSON
@@ -49,5 +49,24 @@ async update(request, response) {
     } catch (error) { 
         return response.status(500).json({confirma: 'Erro', message: error});
     }
-},        
+}, 
+
+async delete(request, response) { 
+    try {
+            // parâmetro passado via url na chamada da api pelo front-end
+        const { liv_id } = request.params;    
+            // comando de exclusão
+        const sql = 'DELETE FROM livro WHERE liv_id = ?'; 
+            // definição de array com os parâmetros que receberam os valores do front-end
+        const values = [liv_id];
+            // executa a instrução de exclusão no banco de dados    
+        await db.query(sql, values);  
+            // Mensagem de retorno no formato JSON
+        return response.status(200).json({confirma: 'Sucesso', message:'Livro com id ' + liv_id + ' excluída com sucesso'}); 
+    } catch (error) {
+        return response.status(500).json({confirma: 'Erro', message: error});
+    }        
+},
+
+
 };
