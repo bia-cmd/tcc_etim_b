@@ -41,7 +41,7 @@ async update(request, response) {
             // instrução sql para atualização
         const sql = 'UPDATE livro SET liv_nome = ?, edit_id = ?, gen_id = ?, liv_quant_paginas = ?, liv_descricao = ?, liv_foto = ?, liv_moderacao = ?, usu_id= ? WHERE liv_id;';  
             // definição de array com os parâmetros que receberam os valores do front-end
-        const values = [liv_nome, edit_id, gen_id, liv_quant_paginas, liv_descricao, liv_foto, liv_moderacao, usu_id, liv_id];   
+        const values = [liv_nome, edit_id, gen_id, liv_quant_paginas, liv_descricao, liv_foto, liv_moderacao, liv_id];   
             // executa a instrução de atualização no banco de dados    
         const atualizacao = await db.query(sql, values);
             // Mensagem de retorno no formato JSON
