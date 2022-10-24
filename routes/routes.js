@@ -18,9 +18,9 @@ const opcLivrosController =  require('../controllers/opcLivrosController');
 
 // definição de rotas
 router.get('/autores', AutoresController.listarAutores);
-router.get('/autores', AutoresController.create);
-//editar
-//excluir
+router.post('/autores', AutoresController.create);
+router.patch('/autores/:autor_id', AutoresController.update);
+router.delete('/autores/:autor_id', AutoresController.delete);
 
 router.get('/usuario', usuarioController.listarUsuarios);
 //cadastar
@@ -28,8 +28,8 @@ router.get('/usuario', usuarioController.listarUsuarios);
 //excluir
 
 router.get('/autorLivro', autorLivroController.listarAutorLivro);
-router.get('/autorLivro', autorLivroController.create);
-//editar
+router.post('/autorLivro', autorLivroController.create);
+// atualiza - não tem
 //excluir
 
 router.get('/comentarios', comentariosController.listarComentario);
@@ -43,9 +43,9 @@ router.get('/curso', cursoController.listarCurso);
 //excluir
 
 router.get('/editora', editoraController.listarEditora);
-router.get('/editora', editoraController.create);
-//editar
-//excluir
+router.post('/editora', editoraController.create);
+router.patch('/editora/:edit_id', editoraController.update);
+router.delete('/editora/:edit_id', editoraController.delete);
 
 router.get('/genero', generoController.listarGenero);
 //cadastar
