@@ -4,17 +4,6 @@ const {json} = require("express");
 const db = require("../database/connection");
 
 module.exports ={
-    async listarLivro(request, response){
-        try{
-            const sql = 'SELECT liv_id, liv_nome, edit_id, gen_id, liv_quant_paginas, liv_descricao, liv_foto, liv_moderacao FROM livro;';
-            const livro = await db.query(sql);
-
-            return response.status(200).json({confirma: 'Sucesso', nResults: livro[0].length, message: livro[0]});
-        } catch (error) {
-            return response.status(500).json({confirma: 'Erro', message: error});
-                }
-    },
-
 
     async create(request, response){
       try {
@@ -68,5 +57,27 @@ async delete(request, response) {
     }        
 },
 
+async listarLivro(request, response) {
+        try {
+
+            const {liv_id = '%%'} = request.body; 
+            const {edit_id = '%%'} = request.body;
+            const {gen_id = '%%'} = request.body;
+            const {liv_nome = '%%'} = request.body;
+
+            const nome_livro = liv_nome === '%%' ? '%%' : '%' + liv_nome + '%';
+            
+            const {page= 1, limit= 5} = request.body;
+            const inicio = (page -1) * limit;
+
+            const sql = 'select l.liv_id, l.liv_nome, l.edit_id, l.gen_id, l.liv_quant_paginas, l.liv_descricao, l.liv_foto, l.liv_moderacao, l.usu_id FROM livro l INNER JOIN editora e ON l.edit_id = e.edit_id INNER JOIN genero g ON l.gen_id = g.gen_id INNER JOIN usuario u ON l.usu_id = u.usu_id WHERE  l.liv_id like ? AND l.liv_nome like ? AND l.edit_id like ? AND l.gen_id LIKE ? LIMIT ?, ?';
+            const values = [ liv_id, nome_livro, edit_id, gen_id,  inicio, parseInt(limit)];
+            const livro = await db.query(sql, values);
+
+            return response.status(200).json({confirma: 'Sucesso', nResults: livro[0].length, message: livro[0]});
+        } catch (error) {
+            return response.status(500).json({confirma: 'Erro', message: error});
+                }
+        },
 
 };

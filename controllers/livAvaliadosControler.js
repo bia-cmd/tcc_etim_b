@@ -3,17 +3,7 @@ const {json} = require("express");
 const db = require("../database/connection");
 
 module.exports = {
-    async listarLivAvaliados(request, response){
-        try{
-           const sql= 'SELECT usu_id, liv_id, liv_nota FROM liv_avalidos;';
-           const liv_avalidos = await db.query(sql);
-
-            return response.status(200).json({confirma: 'Sucesso', nResults: liv_avalidos[0].length, message: liv_avalidos[0]});
-        } catch (error) {
-            return response.status(500).json({confirma: 'Erro', message: error});
-                }
-    },
-
+    
     async create(request, response){
         try {
           const { usu_id, liv_id, liv_nota } = request.body;
@@ -49,4 +39,25 @@ module.exports = {
     }
 }, 
 
+async listarLivAvaliados(request, response) {
+    try {
+
+        const {liv_id = '%%'} = request.body; 
+        const {usu_id = '%%'} = request.body;
+        const {liv_nota = '%%'} = request.body;
+
+        const nota_livro = liv_nota === '%%' ? '%%' : '%' + liv_nota + '%';
+        
+        const {page= 1, limit= 5} = request.body;
+        const inicio = (page -1) * limit;
+
+        const sql = 'select a.usu_id, a.liv_id, a.liv_nota FROM liv_avalidos a INNER JOIN usuario u ON a.usu_id = u.usu_id INNER JOIN livro l ON a.liv_id = l.liv_id WHERE a.liv_id like ? AND a.liv_nota LIKE ?';
+        const values = [ liv_id, usu_id, liv_nota, inicio, parseInt(limit)];
+        const liv_avalidos = await db.query(sql, values);
+
+        return response.status(200).json({confirma: 'Sucesso', nResults: liv_avalidos[0].length, message: liv_avalidos[0]});
+    } catch (error) {
+        return response.status(500).json({confirma: 'Erro', message: error});
+            }
+    },
 };
