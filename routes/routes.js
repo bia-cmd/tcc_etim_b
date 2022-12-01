@@ -23,9 +23,10 @@ router.get('/autores', AutoresController.listarAutores);
 //excluir
 
 router.get('/usuario', usuarioController.listarUsuarios);
+router.get('/usuario/login', usuarioController.login);
 router.post('/usuario', usuarioController.create);
 router.patch('/usuario/:usu_id', usuarioController.update);
-//excluir
+router.delete('/usuario/:usu_id', usuarioController.delete);
 
 router.get('/autorLivro', autorLivroController.listarAutorLivro);
 //cadastar
@@ -59,18 +60,16 @@ router.get('/livavaliados', livAvaliadosController.listarLivAvaliados);
 
 router.get('/livgostei', livGosteiController.listarLivGostei);
 router.post('/livgostei', livGosteiController.create);
-//editar
-//excluir
 
 router.get('/livros', livrosController.listarLivro);
 //cadastar
 //editar
 //excluir
 
-router.get('/opclivro', opcLivrosController.listarOpcLivro); 
+router.get('/opclivro', opcLivrosController.listarOpcLivros); 
 router.post('/opclivro', opcLivrosController.create); 
 router.patch('/opclivro/:opc_id', opcLivrosController.update); 
-//excluir
+router.delete('/opclivro/:opc_id', opcLivrosController.delete); 
 
 
 module.exports = router;
